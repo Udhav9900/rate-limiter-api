@@ -1,26 +1,33 @@
----
+# ⚡ Rate Limiter API using Redis (Node.js + Express)
 
-### 📢 LinkedIn Post Caption:
+This is a lightweight **Rate Limiting API middleware** built with:
+- **Node.js**
+- **Express.js**
+- **Redis (via Homebrew on macOS)**
 
-🚀 Just finished building a **Rate Limiter API** using **Node.js, Redis, and Express.js**!
+### 🔧 Features:
+- Limits each user to **10 requests per minute**
+- Responds with HTTP `429` if the limit is exceeded
+- Uses Redis as a fast in-memory store for request tracking
 
-✅ Tech stack used:
-- **Backend:** Node.js + Express.js  
-- **Database/Cache:** Redis via Homebrew  
-- **Terminal & GitHub:** Mac Zsh terminal, Git, force pushing, rebase conflict resolution
+### 📁 Tech Stack:
+- **Backend:** Node.js, Express.js
+- **Cache Store:** Redis
+- **Terminal Tooling:** Homebrew, npm
+- **Source Control:** Git + GitHub
 
-🔁 This middleware limits API users to **10 requests per minute**, returning a `429` status code if the threshold is exceeded — just like **GitHub**, **Twitter**, and other big platforms do in production!
+### 🧠 Key Logic:
+- When a request is made, a key is generated per user/IP.
+- Redis increments the key count.
+- If requests exceed 10 per 60s, API returns a `429 Too Many Requests`.
 
-🔧 Faced real-world dev challenges like:
-- Fixing branch merge conflicts with `git rebase`
-- Handling permission issues on macOS
-- Understanding the request-response lifecycle deeply while caching state in Redis
+### 🚀 Run It Locally:
+```bash
+# Start Redis
+brew services start redis
 
-📌 Project source code uploaded here: [GitHub Repo Link]  
-🎥 Sharing a short demo video soon as well!
+# Install deps
+npm install
 
-Feel free to give feedback or drop suggestions below 🙌
-
----
-
-Let me know when you want the GitHub project description or video caption!
+# Run the API
+node server.js
